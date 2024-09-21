@@ -1,0 +1,28 @@
+version: '3'
+services:
+ 
+  book-catalog:
+    image: book-catalog
+    build: 
+      context: ./book_catalog
+      dockerfile: Dockerfile
+    container_name: book-catalog
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+      - DATABASE_URL=postgresql://sit722_part4_postgres_user:fL9YYpchel09hXkaJf3paaca4HZLFNOc@dpg-crnb6cu8ii6s73ensg1g-a.oregon-postgres.render.com/sit722_part4_postgres
+    restart: "no"
+ 
+  inventory-management:
+    image: inventory-management
+    build: 
+      context: ./inventory_management
+      dockerfile: Dockerfile
+    container_name: inventory-management
+    ports:
+     - "8002:8002"
+    environment:
+      - PORT=8002
+      - DATABASE_URL=postgresql://sit722_part4_postgres_user:fL9YYpchel09hXkaJf3paaca4HZLFNOc@dpg-crnb6cu8ii6s73ensg1g-a.oregon-postgres.render.com/sit722_part4_postgres
+    restart: "no"
